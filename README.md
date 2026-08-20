@@ -1,2 +1,2 @@
-# Reposit-rio-Rocket
+# Projeto Rocket Semana de Tecnologia
 Rocket games
