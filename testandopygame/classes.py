@@ -1,8 +1,8 @@
 import pygame
 
 class Personagem:
-    def __init__(self, cam_img, x, y, vel=5):
-        self.imagem = pygame.image.load(cam_img)
+    def __init__(self, caminho_img, x, y, vel=5):
+        self.imagem = pygame.image.load(caminho_img)
         self.x=x
         self.y=y
         self.vel=vel
