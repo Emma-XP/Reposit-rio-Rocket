@@ -1,5 +1,11 @@
 import pygame
-
+class items:
+    def __init__(self, img, x, y): 
+        self.x=x
+        self.y=y
+        self.imagem = pygame.image.load(img)
+        pass
+        
 class Personagem:
     def __init__(self, caminho_img, x, y, vel=5):
         self.imagem = pygame.image.load(caminho_img)
