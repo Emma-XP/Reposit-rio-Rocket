@@ -17,17 +17,61 @@ body{
 
 .card-group{
   display: flex;
-  gap: 25px;
+  gap: 80px;
+}
+
+.img{
+  position: relative;
+  float: left;
+  bottom: -300px;
+  height: 500px;
+  width: 400px;
+  margin-right: 10px;
+}
+.Lala{
+  color: brown;
+  position: relative;
+  bottom: -800px;
+  left: 480px;
+  text-align: left;
+}
+
+.Title{
+  text-align: center;
+  position: relative;
+  top: 40px;
+  color: chartreuse;
+}
+
+.veja{
+  text-align: center;
+  position: relative;
+  top: 70px;
+  color: chartreuse;
+}
+.bottom{
+  position: relative;
+  top: -70px;
+  left: 1200px;
+  height: 100px;
+  width: 300px;
+  background-image: url('Berdly.png');
+  padding: 8px 12px;
+  border-radius: 18px;
+  margin-top: 40px;
+  overflow: hidden;
 }
 
 .card{
-  width: 225px;
-  height: 400px;
+  width: 500px;
+  height: 600px;
   border-radius: 16px;
   overflow: hidden;
-  position: relative;
+  position:relative;
   transition: 0.5s;
   cursor: pointer;
+  top: 1500px;
+  left: -200px;
 }
 
 .card img {

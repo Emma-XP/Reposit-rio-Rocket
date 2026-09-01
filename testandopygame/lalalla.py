@@ -1,24 +1,26 @@
 import pygame
-from classes import Personagem
+from classes import Personagem, items
 
 pygame.init()
 tela = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 
 cientista = Personagem("testandopygame/cientista_alphys.png", 375, 275)
-
+itemC= items("testandopygame/cientista_alphys.png", 380, 290)
 rodando = True
 while rodando:
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             rodando = False
-
+    if itemC and cientista.colliderect(itemC):
+                    print("gg")
     teclas = pygame.key.get_pressed()
     cientista.Mover(teclas)
 
     tela.fill((20, 20, 40))
+    itemC.Desenhar(tela)
     cientista.Desenhar(tela)
     pygame.display.flip()
     clock.tick(60)
-
+    
 pygame.quit()
