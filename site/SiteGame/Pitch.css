@@ -17,17 +17,33 @@ body{
 
 .card-group{
   display: flex;
-  gap: 25px;
+  gap: 80px;
+}
+
+
+.bottom{
+  position: relative;
+  top: 30px;
+  left: 1200px;
+  height: 100px;
+  width: 300px;
+  background-image: url('Berdly.png');
+  padding: 8px 12px;
+  border-radius: 18px;
+  margin-top: 8px;
+  overflow: hidden;
 }
 
 .card{
-  width: 225px;
-  height: 400px;
+  width: 500px;
+  height: 600px;
   border-radius: 16px;
   overflow: hidden;
-  position: relative;
+  position:relative;
   transition: 0.5s;
   cursor: pointer;
+  top: 1500px;
+  left: 20px;
 }
 
 .card img {
