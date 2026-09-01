@@ -20,17 +20,45 @@ body{
   gap: 80px;
 }
 
+.img{
+  position: relative;
+  float: left;
+  bottom: -300px;
+  height: 500px;
+  width: 400px;
+  margin-right: 10px;
+}
+.Lala{
+  color: brown;
+  position: relative;
+  bottom: -800px;
+  left: 480px;
+  text-align: left;
+}
 
+.Title{
+  text-align: center;
+  position: relative;
+  top: 40px;
+  color: chartreuse;
+}
+
+.veja{
+  text-align: center;
+  position: relative;
+  top: 70px;
+  color: chartreuse;
+}
 .bottom{
   position: relative;
-  top: 30px;
+  top: -70px;
   left: 1200px;
   height: 100px;
   width: 300px;
   background-image: url('Berdly.png');
   padding: 8px 12px;
   border-radius: 18px;
-  margin-top: 8px;
+  margin-top: 40px;
   overflow: hidden;
 }
 
@@ -43,7 +71,7 @@ body{
   transition: 0.5s;
   cursor: pointer;
   top: 1500px;
-  left: 20px;
+  left: -200px;
 }
 
 .card img {
