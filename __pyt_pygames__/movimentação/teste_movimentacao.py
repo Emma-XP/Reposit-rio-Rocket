@@ -1,11 +1,14 @@
 import pygame
-from __pyt_pygame__.movimentação.classe_personagem import Personagem  
+
+from classe_personagem import Personagem
 
 pygame.init()
 
+CAMINNHO_IMAGES = "__pyt_pygames__/images/"
+
 tela=pygame.display.set_mode((800,600)) #Define o formato e dimensões da tela 
 clock= pygame.time.Clock()
-leorio=pygame.image.load("images/leorio.png")
+leorio=pygame.image.load(CAMINNHO_IMAGES+"leorio.png")
 leorio_redimensionado=pygame.transform.scale(leorio,(100,185))
 cientista= Personagem (leorio_redimensionado,375,275) #Instância (Objeto)
 pygame.display.set_caption("Game maldito") #Parecido com o elemento label
