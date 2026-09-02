@@ -8,7 +8,7 @@
   color: white;
 }
 body{
-    background-image: url('Berdly.png');
+    background-image: url('fundorxo.jpg');
     background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -29,7 +29,7 @@ body{
   margin-right: 10px;
 }
 .Lala{
-  color: brown;
+  color: rgb(241, 248, 253);
   position: relative;
   bottom: -800px;
   left: 480px;
@@ -40,14 +40,17 @@ body{
   text-align: center;
   position: relative;
   top: 40px;
-  color: chartreuse;
+  font-size:250px;
+  color: #f7e78f;
+  text-shadow: 0 0 5px #ffe600, 0 0 10px #ffe600, 0 0 20px #ffd900;
 }
 
 .veja{
   text-align: center;
   position: relative;
   top: 70px;
-  color: chartreuse;
+  color: rgb(245, 228, 129);
+  text-shadow: 0 0 2px #ffe600, 0 0 5px #ffe600, 0 0 5px #ffd900;
 }
 .bottom{
   position: relative;
@@ -55,7 +58,7 @@ body{
   left: 1200px;
   height: 100px;
   width: 300px;
-  background-image: url('Berdly.png');
+  background: linear-gradient(to top, rgb(1, 1, 54), rgb(67, 3, 70));
   padding: 8px 12px;
   border-radius: 18px;
   margin-top: 40px;
