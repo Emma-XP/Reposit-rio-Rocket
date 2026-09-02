@@ -3,21 +3,27 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    margin: 0;
 }
 
 .cabeca {
     background-color: rgb(4,6,7);
-    position: static;
+    position: sticky;
     padding: 2px;
     text-align: center;
     color: rgb(227, 217, 252);
-    border-radius: 20px;
+    border-radius: 0px;
+    top: 0;
+    width: 1265px;
+    height: 80px;
+    margin: 0;
+    z-index: 1;
 }
 
 .botao {
     position: relative;
     padding: 5px;
-    top: 200px;
+    top: 780px;
     width: 100px;
     height: 350px;
     font-size: 30px;
@@ -30,36 +36,63 @@ body {
 }
 
 #bot1 {
-    left: 475px;
+    left: 469px;
 }
 #bot2 {
-    left: 500px;
+    left: 519px;
 }
 #bot3 {
-    left: 525px;
+    left: 569px;
 }
 
+.estrela{
+  position: absolute;
+  width: 300px;
+  height: 300px;
+}
 #img1 {
-    position: relative;
-    left: -275px;
-    top: -50px;
-    width: 300px;
-    height: 300px;
+    left: 40px;
+    top: 50px;
+    z-index: 3;
 }
 #img2 {
-    position: relative;
-    left: 275px;
-    top: -50px;
-    width: 300px;
-    height: 300px;
+    right: 40px;
+    top: 50px;
+    z-index: 4;
 }
 
+#capitulos {
+  position: absolute;
+  top: 725px;
+  left: 380px;
+  color: rgb(227, 217, 252);
+  text-align: center;
+  align-items: center;
+  width: 550px;
+  height: 300px;
+}
+#sumario {
+  position: absolute;
+  left: 380px;
+  text-align: center;
+  align-items: center;
+  width: 550px;
+  height: 170px;
+  background: rgba(227, 217, 252,0.50);
+  border-radius: 50px;
+}
 .texto {
-    padding: 0;
-    display: flex;
-    text-align: center;
-    width: 500px;
-    height: 500px;
+  color: rgb(66, 4, 4);
+  font-family:'Courier New', Courier, monospace;
+  z-index: 2;
+}
+
+#foto {
+  position: absolute;
+  left: 380px;
+  top: 400px;
+  width: 550px;
+  height: 300px;
 }
 
 @keyframes glitch {
