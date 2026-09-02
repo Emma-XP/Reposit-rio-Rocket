@@ -1,0 +1,88 @@
+body {
+    background-image: url(download.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.cabeca {
+    background-color: rgb(4,6,7);
+    position: static;
+    padding: 2px;
+    text-align: center;
+    color: rgb(227, 217, 252);
+    border-radius: 20px;
+}
+
+.botao {
+    position: relative;
+    padding: 5px;
+    top: 200px;
+    width: 100px;
+    height: 350px;
+    font-size: 30px;
+    font-weight: 700;
+    color: black;
+    background-image: url(aaaaa.jpg);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+#bot1 {
+    left: 475px;
+}
+#bot2 {
+    left: 500px;
+}
+#bot3 {
+    left: 525px;
+}
+
+#img1 {
+    position: relative;
+    left: -275px;
+    top: -50px;
+    width: 300px;
+    height: 300px;
+}
+#img2 {
+    position: relative;
+    left: 275px;
+    top: -50px;
+    width: 300px;
+    height: 300px;
+}
+
+.texto {
+    padding: 0;
+    display: flex;
+    text-align: center;
+    width: 500px;
+    height: 500px;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    transform: translate(-1px, -1px);
+  }
+  60% {
+    transform: translate(1px, 1px);
+  }
+  80% {
+    transform: translate(1px, -1px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.glitch:hover {
+    animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+}
