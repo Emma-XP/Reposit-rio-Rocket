@@ -1,6 +1,5 @@
 import pygame
-from classe_sprites import*
-from pygame.locals import*
+from classe_sprites import *
 pygame.init()
 clock=pygame.time.Clock()
 tela=pygame.display.set_mode((800,600))
