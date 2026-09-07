@@ -2,6 +2,9 @@ import pygame
 import sys
 
 CAMINNHO_IMAGES = "__pyt_pygames__/MovimentaçãoDiana/"
+
+
+
 class Frames(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -9,6 +12,7 @@ class Frames(pygame.sprite.Sprite):
         self.image_a=pygame.image.load(CAMINNHO_IMAGES+"Andar 1.jpeg")
         self.image_b=pygame.image.load(CAMINNHO_IMAGES+"Andar 2.jpeg")
         self.image_c=pygame.image.load(CAMINNHO_IMAGES+"Andar 3.jpeg")
+
 
         self.sprites.append(self.image_a)
         self.sprites.append(self.image_b)
