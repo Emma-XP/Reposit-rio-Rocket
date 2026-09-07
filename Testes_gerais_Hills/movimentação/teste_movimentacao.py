@@ -1,6 +1,6 @@
 import pygame
 
-from classe_personagem import Personagem
+from Testes_gerais_Hills.movimentação.classe_personagem import Personagem
 
 pygame.init()
 
