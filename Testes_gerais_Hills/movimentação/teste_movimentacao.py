@@ -4,7 +4,7 @@ from Testes_gerais_Hills.movimentação.classe_personagem import Personagem
 
 pygame.init()
 
-CAMINNHO_IMAGES = "__pyt_pygames__/images/"
+CAMINNHO_IMAGES = "Testes_gerais_Hills/movimentação/images/"
 
 tela=pygame.display.set_mode((800,600)) #Define o formato e dimensões da tela 
 clock= pygame.time.Clock()
