@@ -1,14 +1,18 @@
 import pygame
-CAMINHO_IMAGEM="__pyt_pygames__/MovimentaçãoDiana/"
+import sys
+
+CAMINNHO_IMAGES = "__pyt_pygames__/MovimentaçãoDiana/"
+
 
 
 class Frames(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.sprites=[]
-        self.image_a=pygame.image.load(CAMINHO_IMAGEM + "Andar 1.jpeg")
-        self.image_b=pygame.image.load(CAMINHO_IMAGEM + "Andar 2.jpeg")
-        self.image_c=pygame.image.load(CAMINHO_IMAGEM + "Andar 3.jpeg")
+        self.image_a=pygame.image.load(CAMINNHO_IMAGES+"Andar 1.jpeg")
+        self.image_b=pygame.image.load(CAMINNHO_IMAGES+"Andar 2.jpeg")
+        self.image_c=pygame.image.load(CAMINNHO_IMAGES+"Andar 3.jpeg")
+
 
         self.sprites.append(self.image_a)
         self.sprites.append(self.image_b)
@@ -30,5 +34,22 @@ andar=pygame.sprite.Group()
 Diana=Frames()
 andar.add(Diana)
 
+class Personagem:
+    def __init__(self,imagem, x, y, velocidade=5):
+        self.imagem= imagem
+        self.x= x #Perambulam pelo plano cartesiano
+        self.y= y
+        self.velocidade=velocidade
+    def mover (self, teclas):
+        if teclas[pygame.K_LEFT]:
+            self.x -= self.velocidade
+        if teclas[pygame.K_RIGHT]:
+            self.x += self.velocidade
+        if teclas[pygame.K_UP]:
+            self.y -= self.velocidade
+        if teclas[pygame.K_DOWN]:
+            self.y += self.velocidade
+    def desenhar(self, tela):
+        tela.blit(self.imagem,(self.x, self.y))
 
 
