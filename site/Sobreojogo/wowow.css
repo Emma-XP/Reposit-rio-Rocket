@@ -17,7 +17,7 @@ body {
     width: 1265px;
     height: 80px;
     margin: 0;
-    z-index: 1;
+    z-index: 3;
 }
 
 .botao {
@@ -28,6 +28,8 @@ body {
     height: 350px;
     font-size: 30px;
     font-weight: 700;
+    font-family:'Courier New', Courier, monospace;
+    font-style: italic;
     color: black;
     background-image: url(aaaaa.jpg);
     cursor: pointer;
@@ -46,19 +48,19 @@ body {
 }
 
 .estrela{
-  position: absolute;
+  position: relative;
   width: 300px;
   height: 300px;
 }
 #img1 {
-    left: 40px;
+    right: 300px;
     top: 50px;
-    z-index: 3;
+    z-index: 1;
 }
 #img2 {
-    right: 40px;
+    left: 300px;
     top: 50px;
-    z-index: 4;
+    z-index: 1;
 }
 
 #capitulos {
@@ -79,7 +81,7 @@ body {
   width: 550px;
   height: 170px;
   background: rgba(227, 217, 252,0.50);
-  border-radius: 50px;
+  border-radius: 25px;
 }
 .texto {
   color: rgb(66, 4, 4);
