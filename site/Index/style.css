@@ -1,0 +1,45 @@
+
+.navegacao{
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+    text-align: center;
+    width: 300px;
+    height: 80px;
+    font-size: 25px;
+    border: 1px solid #170312;
+    background-color:#33032F;
+    color: #A0ACAD;
+    border-radius: 25px;
+}
+.sessao{
+    text-align: center;
+    background: color #114154;
+    padding:20px;
+    border-radius: 25px;
+    border: 1px solid #A0ACAD;
+    margin: 30px
+}
+
+.escrita{
+    text-align: center;
+    color: #EDEDE8
+}
+
+img{
+    margin: 20px;
+}
+
+#fundo{
+    background-image: url("fundo.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+.container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+header{
+    text-align: center;
+}
