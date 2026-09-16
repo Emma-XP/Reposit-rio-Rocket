@@ -29,7 +29,7 @@ body {
     font-family:'Courier New', Courier, monospace;
     font-style: italic;
     color: black;
-    background-image: url(aaaaa.jpg);
+    background: repeating-linear-gradient(#cda84f, #e3cb85);
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s ease;
