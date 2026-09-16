@@ -8,11 +8,10 @@
   color: white;
 }
 body{
-    background-image: url('fundorxo.jpg');
+    background-image: url('sempacienciapnome.png');
     background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
+    background-position: center;
+  
 }
 
 .card-group{
@@ -29,33 +28,35 @@ body{
   margin-right: 10px;
 }
 .Lala{
-  color: rgb(241, 248, 253);
+  color: #e3cb85;
   position: relative;
-  bottom: -800px;
+  bottom: -775px;
   left: 480px;
   text-align: left;
+  width: 700px;
 }
 
 .Title{
   text-align: center;
   position: relative;
   top: 40px;
-  font-size:250px;
+  font-size: 100px;
   color: #f7e78f;
-  text-shadow: 0 0 5px #ffe600, 0 0 10px #ffe600, 0 0 20px #ffd900;
+  text-shadow: 0 0 5px #ffe600, 0 0 5px #ffe600, 0 0 15px #ffd900;
 }
 
 .veja{
   text-align: center;
   position: relative;
   top: 70px;
+  font-size: 50px;
   color: rgb(245, 228, 129);
-  text-shadow: 0 0 2px #ffe600, 0 0 5px #ffe600, 0 0 5px #ffd900;
+  text-shadow: 0 0 2px #ffe600, 0 0 10px #ffe600, 0 0 20px #ffd900;
 }
 .bottom{
   position: relative;
   top: -70px;
-  left: 1200px;
+  left: 1100px;
   height: 100px;
   width: 300px;
   background: linear-gradient(to top, rgb(1, 1, 54), rgb(67, 3, 70));
@@ -63,6 +64,11 @@ body{
   border-radius: 18px;
   margin-top: 40px;
   overflow: hidden;
+}
+#txt_bt {
+  color: #f7e78f;
+  display: flex;
+  align-items: center;
 }
 
 .card{
@@ -108,7 +114,8 @@ body{
 }
 
 .info button{
-  background: #490CCC;
+  color: #151119;
+  background: #482d5a;
   border: none;
   padding: 8px 12px;
   font-weight: bold;

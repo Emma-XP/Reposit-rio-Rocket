@@ -2,7 +2,6 @@ body {
     background-image: url(download.png);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
     margin: 0;
 }
 
@@ -22,16 +21,15 @@ body {
 
 .botao {
     position: relative;
-    padding: 5px;
-    top: 780px;
+    top: 900px;
     width: 100px;
-    height: 350px;
+    height: 400px;
     font-size: 30px;
     font-weight: 700;
     font-family:'Courier New', Courier, monospace;
     font-style: italic;
     color: black;
-    background-image: url(aaaaa.jpg);
+    background: repeating-linear-gradient(#cda84f, #e3cb85);
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -63,9 +61,8 @@ body {
     z-index: 1;
 }
 
-#capitulos {
+.texto2 {
   position: absolute;
-  top: 725px;
   left: 380px;
   color: rgb(227, 217, 252);
   text-align: center;
@@ -73,6 +70,13 @@ body {
   width: 550px;
   height: 300px;
 }
+#pt1 {
+  top: 725px;
+}
+#pt2 {
+  top: 920px;
+}
+
 #sumario {
   position: absolute;
   left: 380px;
@@ -83,13 +87,13 @@ body {
   background: rgba(227, 217, 252,0.50);
   border-radius: 25px;
 }
-.texto {
+.texto1 {
   color: rgb(66, 4, 4);
   font-family:'Courier New', Courier, monospace;
   z-index: 2;
 }
 
-#foto {
+.foto  {
   position: absolute;
   left: 380px;
   top: 400px;
