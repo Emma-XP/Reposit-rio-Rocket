@@ -52,4 +52,3 @@ class Personagem:
     def desenhar(self, tela):
         tela.blit(self.imagem,(self.x, self.y))
 
-

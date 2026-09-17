@@ -13,3 +13,4 @@ class Fundo:
     def desenhar(self, tela):
         tela.blit(self.imagem, (self.x, 0))
         tela.blit(self.imagem, (self.x + self.largura, 0))
+        
