@@ -23,7 +23,7 @@ class Frames(pygame.sprite.Sprite):
         self.rect=self.image.get_rect() #Torna a imagem retangular
         self.rect.topright=(400,100)
 
-    def update(self):
+    def redimensionar(self):
         self.indice_atual=self.indice_atual + 0.05
         if self.indice_atual>=len(self.sprites):
             self.indice_atual=0
@@ -51,4 +51,18 @@ class Personagem:
             self.y += self.velocidade
     def desenhar(self, tela):
         tela.blit(self.imagem,(self.x, self.y))
+
+import pygame
+
+class Plataforma(pygame.sprite.Sprite):
+    def __init__(self, x, y, largura, altura, cor=(0, 128, 255)):
+        super().__init__()
+        # 1. Cria a superfície visual da plataforma
+        self.image = pygame.Surface((largura, altura))
+        self.image.fill(cor)
+        
+        # 2. Define o retângulo de posicionamento e colisão
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
 

@@ -1,7 +1,6 @@
 import pygame
 import sys
-from classe_sprites import Plataforma  # Movido para o topo por boa prática
-
+from classes import Plataforma  
 pygame.init()
 
 CAMINHO_IMAGEM = "__pyt_pygames__/MovimentaçãoDiana/"
@@ -16,7 +15,7 @@ relogio = pygame.time.Clock()
 
 gravidade = 0.8          
 velocidade_y = 0         
-forca_pulo = -14  # Ajustado levemente para o pulo ficar fluido com as plataformas
+forca_pulo = -22  # Ajustado levemente para o pulo ficar fluido com as plataformas
 no_chao = False           # Começa como False para ela cair na plataforma inicial
 
 # --- CONFIGURAÇÃO DAS PLATAFORMAS ---
@@ -46,7 +45,16 @@ animacao_esquerda = [
     carregar_e_escala("Andar 3.jpeg")
 ] 
 
+animacao_pulo_right = [
+    carregar_e_escala("Pulo 1.jpeg"),
+    carregar_e_escala("Pulo 2.jpeg"),
+    carregar_e_escala("Pulo 3.jpeg"),
+    carregar_e_escala("Pulo 4.jpeg"),
+    carregar_e_escala("Pulo 5.jpeg")
+]
 animacao_direita = [pygame.transform.flip(f, True, False) for f in animacao_esquerda]
+
+animacao_pulo_left = [pygame.transform.flip(f, True, False) for f in animacao_pulo_right]
 
 animacao_baixo = [
     carregar_e_escala("Andar frente.jpeg"),
@@ -56,14 +64,6 @@ animacao_baixo = [
 animacao_cima = [
     carregar_e_escala("Andar costas.jpeg"),
     carregar_e_escala("Andar costas-2.jpeg")
-]
-
-animacao_pulo = [
-    carregar_e_escala("Pulo 1.jpeg"),
-    carregar_e_escala("Pulo 2.jpeg"),
-    carregar_e_escala("Pulo 3.jpeg"),
-    carregar_e_escala("Pulo 4.jpeg"),
-    carregar_e_escala("Pulo 5.jpeg")
 ]
 
 velocidade = 5
@@ -92,43 +92,39 @@ while True:
             
     teclas = pygame.key.get_pressed()
 
-    # --- MOVIMENTO HORIZONTAL ---
+    # --- 1. MOVIMENTO HORIZONTAL ---
+    movimento_x = 0
     if teclas[pygame.K_LEFT] or teclas[pygame.K_a]:
-        rect_jogador.x -= velocidade
+        movimento_x = -velocidade
         if no_chao: frames_atuais = animacao_esquerda
         esta_movendo = True
     elif teclas[pygame.K_RIGHT] or teclas[pygame.K_d]:
-        rect_jogador.x += velocidade
+        movimento_x = velocidade
         if no_chao: frames_atuais = animacao_direita
         esta_movendo = True
 
-    # --- MOVIMENTO VERTICAL (ANDAR / PULAR) ---
-    if teclas[pygame.K_DOWN] or teclas[pygame.K_s]:
-        rect_jogador.y += velocidade
-        if no_chao: frames_atuais = animacao_baixo
-        esta_movendo = True
-    elif teclas[pygame.K_UP] or teclas[pygame.K_w]:
-        rect_jogador.y -= velocidade
-        if no_chao: frames_atuais = animacao_cima
-        esta_movendo = True
+    # Aplica movimento X e checa colisões laterais imediatamente
+    rect_jogador.x += movimento_x
+    for plat in grupo_plataformas:
+        if rect_jogador.colliderect(plat.rect):
+            if movimento_x > 0: # Indo para a direita
+                rect_jogador.right = plat.rect.left
+            elif movimento_x < 0: # Indo para a esquerda
+                rect_jogador.left = plat.rect.right
 
-    # Comando do Pulo (Só se no_chao for True)
-    if teclas[pygame.K_SPACE] and no_chao:
+    # --- 2. COMANDO DO PULO (Apenas Espaço ou W/Seta Cima opcional) ---
+    if (teclas[pygame.K_SPACE] or teclas[pygame.K_UP] or teclas[pygame.K_w]) and no_chao:
         velocidade_y = forca_pulo
-        frames_atuais = animacao_pulo
+        frames_atuais = animacao_pulo_right
         indice_frame = 0
         no_chao = False  
 
-    # --- APLICAÇÃO DA FÍSICA E ANIMAÇÃO ---
+    # --- 3. MOVIMENTO VERTICAL (GRAVIDADE) ---
     velocidade_y += gravidade
     rect_jogador.y += velocidade_y  
 
-    # --- DETECÇÃO DE COLISÃO COM AS PLATAFORMAS ---
-    # Criamos um rect temporário usando uma estrutura compatível para checar colisão contra o grupo
-    colisoes = pygame.sprite.spritecollide(pygame.sprite.Sprite(), grupo_plataformas, False)
-    
-    # Como não transformamos a Diana em uma classe Sprite própria ainda, simulamos a colisão manualmente de forma simples:
-    no_chao = False # Reseta o estado; se estiver tocando em algo, mudamos para True abaixo
+    # --- 4. DETECÇÃO DE COLISÃO VERTICAL COM AS PLATAFORMAS ---
+    no_chao = False # Reseta o estado; se estiver tocando no topo de algo, vira True
     
     for plat in grupo_plataformas:
         if rect_jogador.colliderect(plat.rect):
@@ -140,16 +136,24 @@ while True:
                 rect_jogador.top = plat.rect.bottom
                 velocidade_y = 0
 
-    # Lógica de controle de frames (Pulo vs Andar)
+    # --- 5. LÓGICA DE CONTROLE DE FRAMES / ANIMAÇÃO ---
     if not no_chao:
-        frames_atuais = animacao_pulo
+        frames_atuais = animacao_pulo_right
         indice_frame += 0.15 
         if indice_frame >= len(frames_atuais):
             indice_frame = len(frames_atuais) - 1 
     else:
         if not esta_movendo:
-            frames_atuais = animacao_baixo  
             indice_frame = 0
+            # Se as teclas para baixo/cima ainda servem para mudar visual de direção:
+            if teclas[pygame.K_DOWN] or teclas[pygame.K_s]:
+                frames_atuais = animacao_baixo
+            elif teclas[pygame.K_UP] or teclas[pygame.K_w]:
+                frames_atuais = animacao_cima
+            else:
+                pass
+            # Se não estiver pressionando nada, mantém parado no primeiro frame da animação atual
+            
 
     # Troca de frames por tempo (Apenas quando estiver andando no chão)
     tempo_atual = pygame.time.get_ticks()
@@ -161,7 +165,6 @@ while True:
     # --- RENDERIZAÇÃO (DESENHO) ---
     # Desenha todas as plataformas do grupo na tela
     grupo_plataformas.draw(tela)
-
     # Desenha o frame atual da Diana
     frame_para_desenhar = frames_atuais[int(indice_frame)]
     tela.blit(frame_para_desenhar, rect_jogador)
