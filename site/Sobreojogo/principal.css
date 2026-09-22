@@ -13,57 +13,63 @@ body {
     color: rgb(227, 217, 252);
     border-radius: 0px;
     top: 0;
-    width: 1265px;
+    width: 1224px;
     height: 80px;
     margin: 0;
     z-index: 3;
 }
 
 .botao {
-    position: relative;
-    top: 900px;
-    width: 100px;
-    height: 400px;
-    font-size: 30px;
-    font-weight: 700;
-    font-family:'Courier New', Courier, monospace;
-    font-style: italic;
-    color: black;
+    position: absolute;
+    top: 1000px;
     background: repeating-linear-gradient(#cda84f, #e3cb85);
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s ease;
+    border: 0px;
 }
 
 #bot1 {
-    left: 469px;
+    left: 471px;
+    background-image: url(LirioDoVale.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 141px;
+    height: 180px;
 }
-#bot2 {
-    left: 519px;
-}
+
 #bot3 {
-    left: 569px;
+    left: 612px;
+    background-image: url(Myosotis.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 200px;
+    height: 180px;
+}
+
+.txtbt {
+  color: black;
+  bottom: 0;
+  left: 0;
 }
 
 .estrela{
-  position: relative;
+  position: absolute;
+  top: 150px;
   width: 300px;
   height: 300px;
+  z-index: 1;
 }
 #img1 {
-    right: 300px;
-    top: 50px;
-    z-index: 1;
+    right: 50px;
 }
 #img2 {
-    left: 300px;
-    top: 50px;
-    z-index: 1;
+    left: 50px;
 }
 
 .texto2 {
   position: absolute;
-  left: 380px;
+  left: 360px;
   color: rgb(227, 217, 252);
   text-align: center;
   align-items: center;
@@ -75,15 +81,16 @@ body {
 }
 #pt2 {
   top: 920px;
+  color: transparent;
 }
 
 #sumario {
   position: absolute;
-  left: 380px;
+  left: 360px;
   text-align: center;
   align-items: center;
   width: 550px;
-  height: 170px;
+  height: 210px;
   background: rgba(227, 217, 252,0.50);
   border-radius: 25px;
 }
@@ -95,7 +102,7 @@ body {
 
 .foto  {
   position: absolute;
-  left: 380px;
+  left: 360px;
   top: 400px;
   width: 550px;
   height: 300px;
