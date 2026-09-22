@@ -1,131 +1,173 @@
 import pygame
 import sys
-
+from classes import Plataforma  
 pygame.init()
 
 CAMINHO_IMAGEM = "__pyt_pygames__/MovimentaçãoDiana/"
+CAMINHO_PLATAFORMAS = "__pyt_pygames__/game_main/"
 
-LARGURA, ALTURA = 800, 600
+LARGURA, ALTURA = 1200, 800
+TAMANHO_JOGADOR = (50, 50)  # Definido como tupla para o transform.scale
+
 tela = pygame.display.set_mode((LARGURA, ALTURA))
 pygame.display.set_caption("Movimentação com Animação")
 relogio = pygame.time.Clock()
 
-gravidade = 0.8          # Força que puxa o personagem para baixo a cada frame
-velocidade_y = 0         # Velocidade vertical atual da Diana
-forca_pulo = -16       # Altura do pulo (número negativo para subir)
-no_chao = True           # Garante que ela só pule se estiver pisando no chão
-altura_chao = 200        # A posição Y onde fica o seu chão
+gravidade = 0.8          
+velocidade_y = 0         
+forca_pulo = -22  # Ajustado levemente para o pulo ficar fluido com as plataformas
+no_chao = False           # Começa como False para ela cair na plataforma inicial
+
+# --- CONFIGURAÇÃO DAS PLATAFORMAS ---
+# Criamos um grupo do Pygame para gerenciar as colisões facilmente
+grupo_plataformas = pygame.sprite.Group()
+
+lista_plataformas = [
+    Plataforma(0, 750, 1200, 50),       # Chão principal
+    Plataforma(200, 600, 300, 30),     # Plataforma 1
+    Plataforma(600, 450, 400, 30),     # Plataforma 2
+    Plataforma(150, 300, 250, 30)      # Plataforma 3
+]
+
+# Adiciona todas as plataformas criadas para dentro do grupo
+for plat in lista_plataformas:
+    grupo_plataformas.add(plat)
+
+# --- CARREGAMENTO E REDIMENSIONAMENTO DOS SPRITES ---
+# Função interna rápida para carregar aplicando o TAMANHO_JOGADOR (50x50)
+def carregar_e_escala(nome_arquivo):
+    img = pygame.image.load(CAMINHO_IMAGEM + nome_arquivo).convert_alpha()
+    return pygame.transform.scale(img, TAMANHO_JOGADOR)
 
 animacao_esquerda = [
-pygame.image.load(CAMINHO_IMAGEM + "Andar 1.jpeg").convert_alpha(),
-pygame.image.load(CAMINHO_IMAGEM + "Andar 2.jpeg").convert_alpha(),
-pygame.image.load(CAMINHO_IMAGEM + "Andar 3.jpeg").convert_alpha()
+    carregar_e_escala("Andar 1.jpeg"),
+    carregar_e_escala("Andar 2.jpeg"),
+    carregar_e_escala("Andar 3.jpeg")
 ] 
 
+animacao_pulo_right = [
+    carregar_e_escala("Pulo 1.jpeg"),
+    carregar_e_escala("Pulo 2.jpeg"),
+    carregar_e_escala("Pulo 3.jpeg"),
+    carregar_e_escala("Pulo 4.jpeg"),
+    carregar_e_escala("Pulo 5.jpeg")
+]
 animacao_direita = [pygame.transform.flip(f, True, False) for f in animacao_esquerda]
 
+animacao_pulo_left = [pygame.transform.flip(f, True, False) for f in animacao_pulo_right]
+
 animacao_baixo = [
-    pygame.image.load(CAMINHO_IMAGEM + "Andar frente.jpeg").convert_alpha(),
-    pygame.image.load(CAMINHO_IMAGEM+ "Andar frente 2.jpeg").convert_alpha(),
+    carregar_e_escala("Andar frente.jpeg"),
+    carregar_e_escala("Andar frente 2.jpeg"),
 ]
 
 animacao_cima = [
-pygame.image.load(CAMINHO_IMAGEM + "Andar costas.jpeg").convert_alpha(),
-pygame.image.load(CAMINHO_IMAGEM + "Andar costas-2.jpeg").convert_alpha()
-]
-
-animacao_pulo=[
-pygame.image.load(CAMINHO_IMAGEM + "Pulo 1.jpeg").convert_alpha(),
-pygame.image.load(CAMINHO_IMAGEM + "Pulo 2.jpeg").convert_alpha(),
-pygame.image.load(CAMINHO_IMAGEM + "Pulo 3.jpeg").convert_alpha(),
-pygame.image.load(CAMINHO_IMAGEM + "Pulo 4.jpeg").convert_alpha(),
-pygame.image.load(CAMINHO_IMAGEM + "Pulo 5.jpeg").convert_alpha()
+    carregar_e_escala("Andar costas.jpeg"),
+    carregar_e_escala("Andar costas-2.jpeg")
 ]
 
 velocidade = 5
-frame_inicial= pygame.image.load(CAMINHO_IMAGEM + "Andar frente.jpeg").convert_alpha()
+frame_inicial = animacao_baixo[0]
 
+# O rect agora assume perfeitamente o tamanho de 50x50 da imagem redimensionada
 rect_jogador = frame_inicial.get_rect()
+rect_jogador.center = (LARGURA // 2, 100)  # Começa no alto para cair na plataforma
 
-rect_jogador.center = (LARGURA // 2, ALTURA // 2)# Controle de Animação
-frames_atuais = animacao_esquerda  # Começa olhando para a direita
+# Controle de Animação
+frames_atuais = animacao_baixo  
 indice_frame = 0
 ultimo_update = pygame.time.get_ticks()
-tempo_por_frame = 200  # Tempo em milissegundos para mudar de quadro
+tempo_por_frame = 200  
 esta_movendo = False
 
+# --- LOOP PRINCIPAL ---
 while True:
     tela.fill((255, 255, 255))  
     esta_movendo = False
 
-    # Eventos
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-
-    # Captura as teclas pressionadas
+            
     teclas = pygame.key.get_pressed()
 
+    # --- 1. MOVIMENTO HORIZONTAL ---
+    movimento_x = 0
     if teclas[pygame.K_LEFT] or teclas[pygame.K_a]:
-        rect_jogador.x -= velocidade
-        frames_atuais = animacao_esquerda
+        movimento_x = -velocidade
+        if no_chao: frames_atuais = animacao_esquerda
         esta_movendo = True
     elif teclas[pygame.K_RIGHT] or teclas[pygame.K_d]:
-        rect_jogador.x += velocidade
-        frames_atuais = animacao_direita
-        esta_movendo = True
-    elif teclas[pygame.K_DOWN] or teclas[pygame.K_s]:
-        rect_jogador.y += velocidade
-        frames_atuais = animacao_baixo
-        esta_movendo=True
-    elif teclas[pygame.K_UP] or teclas[pygame.K_w]:
-        rect_jogador.y -= velocidade
-        frames_atuais = animacao_cima
+        movimento_x = velocidade
+        if no_chao: frames_atuais = animacao_direita
         esta_movendo = True
 
-    # Só funciona se estiver no chão
-    if teclas[pygame.K_SPACE] and no_chao:
+    # Aplica movimento X e checa colisões laterais imediatamente
+    rect_jogador.x += movimento_x
+    for plat in grupo_plataformas:
+        if rect_jogador.colliderect(plat.rect):
+            if movimento_x > 0: # Indo para a direita
+                rect_jogador.right = plat.rect.left
+            elif movimento_x < 0: # Indo para a esquerda
+                rect_jogador.left = plat.rect.right
+
+    # --- 2. COMANDO DO PULO (Apenas Espaço ou W/Seta Cima opcional) ---
+    if (teclas[pygame.K_SPACE] or teclas[pygame.K_UP] or teclas[pygame.K_w]) and no_chao:
         velocidade_y = forca_pulo
-        frames_atuais = animacao_pulo
+        frames_atuais = animacao_pulo_right
         indice_frame = 0
         no_chao = False  
 
+    # --- 3. MOVIMENTO VERTICAL (GRAVIDADE) ---
+    velocidade_y += gravidade
+    rect_jogador.y += velocidade_y  
+
+    # --- 4. DETECÇÃO DE COLISÃO VERTICAL COM AS PLATAFORMAS ---
+    no_chao = False # Reseta o estado; se estiver tocando no topo de algo, vira True
+    
+    for plat in grupo_plataformas:
+        if rect_jogador.colliderect(plat.rect):
+            if velocidade_y > 0:  # Caindo em cima de uma plataforma
+                rect_jogador.bottom = plat.rect.top
+                velocidade_y = 0              
+                no_chao = True                
+            elif velocidade_y < 0:  # Batendo a cabeça por baixo de uma plataforma
+                rect_jogador.top = plat.rect.bottom
+                velocidade_y = 0
+
+    # --- 5. LÓGICA DE CONTROLE DE FRAMES / ANIMAÇÃO ---
     if not no_chao:
+        frames_atuais = animacao_pulo_right
         indice_frame += 0.15 
         if indice_frame >= len(frames_atuais):
             indice_frame = len(frames_atuais) - 1 
-        
-
     else:
         if not esta_movendo:
-            frames_atuais = animacao_baixo  
             indice_frame = 0
+            # Se as teclas para baixo/cima ainda servem para mudar visual de direção:
+            if teclas[pygame.K_DOWN] or teclas[pygame.K_s]:
+                frames_atuais = animacao_baixo
+            elif teclas[pygame.K_UP] or teclas[pygame.K_w]:
+                frames_atuais = animacao_cima
+            else:
+                pass
+            # Se não estiver pressionando nada, mantém parado no primeiro frame da animação atual
             
-        velocidade_y += gravidade
-    rect_jogador.y += velocidade_y  
 
-    #Para não cair infinitamente...
-    if rect_jogador.y >= altura_chao:
-        rect_jogador.y = altura_chao  
-        velocidade_y = 0              
-        no_chao = True                
-
+    # Troca de frames por tempo (Apenas quando estiver andando no chão)
     tempo_atual = pygame.time.get_ticks()
-    
-    if esta_movendo:
-        # Se o tempo necessário passou, avança para o próximo frame
+    if esta_movendo and no_chao:
         if tempo_atual - ultimo_update > tempo_por_frame:
-            indice_frame = (indice_frame + 1) % len(frames_atuais)
+            indice_frame = (indice_frame + 1) % len(frames_atuais)            
             ultimo_update = tempo_atual
-        
-    else:
-        # Se parou de mover, reseta para o primeiro frame (em pé)
-        frames_atuais
 
-    # Desenha o frame atual do jogador na tela
+    # --- RENDERIZAÇÃO (DESENHO) ---
+    # Desenha todas as plataformas do grupo na tela
+    grupo_plataformas.draw(tela)
+    # Desenha o frame atual da Diana
     frame_para_desenhar = frames_atuais[int(indice_frame)]
-    tela.blit(frame_para_desenhar, (rect_jogador))
+    tela.blit(frame_para_desenhar, rect_jogador)
 
     pygame.display.update()
-    relogio.tick(60)  # Mantém o jogo a 60 FPS
+    relogio.tick(60)
