@@ -3,6 +3,7 @@
 from pathlib import Path
 
 RAIZ_PROJETO = Path(__file__).resolve().parents[2]
+CAMINHO_IMAGEM = RAIZ_PROJETO / "__pyt_pygames__" / "Imagens" / "telas"
 PASTA_ASSETS = RAIZ_PROJETO / "assets"
 PASTA_IMAGENS = PASTA_ASSETS / "imagens"
 PASTA_SONS = PASTA_ASSETS / "sons"
@@ -16,7 +17,7 @@ IMAGEM_FLOR = PASTA_IMAGENS / "flor.png"
 FONTE_PRINCIPAL = PASTA_FONTES / "fonte_principal.ttf"
 
 IMAGENS_FUNDO = {
-    "infancia": PASTA_IMAGENS / "fundo_infancia.png",
+    "infancia": PASTA_IMAGENS / "Cenario 1.png",
     "adolescencia": PASTA_IMAGENS / "fundo_adolescencia.png",
     "vida_adulta": PASTA_IMAGENS / "fundo_vida_adulta.png",
 }
