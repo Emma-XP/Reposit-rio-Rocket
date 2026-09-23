@@ -9,13 +9,12 @@ PASTA_TELAS = PASTA_ASSETS / "imagens" / "telas"
 PASTA_SONS = PASTA_ASSETS / "sons"
 PASTA_FONTES = PASTA_ASSETS / "fontes"
 PASTA_SPRITES = PASTA_ASSETS / "imagens" / "movimentação"
-
-
+PASTA_FLORES = PASTA_ASSETS / "imagens" / "flores"
 # Quando estes arquivos forem adicionados, as entidades que os usam deixarão
 # automaticamente de exibir suas formas geométricas temporárias.
 IMAGEM_IDENTIDADE_VISUAL = PASTA_TELAS / "identidade_visual.png"
-IMAGEM_PLATAFORMA = PASTA_TELAS / "plataforma.png"
-IMAGEM_FLOR = PASTA_TELAS / "flor.png"
+IMAGEM_PLATAFORMA = PASTA_ASSETS / "imagens" / "plataformas" / "plataforma.png"
+IMAGEM_FLOR = PASTA_FLORES / "LirioDoVale.png"
 FONTE_PRINCIPAL = PASTA_FONTES / "fonte_principal.ttf"
 
 IMAGENS_FUNDO = {
