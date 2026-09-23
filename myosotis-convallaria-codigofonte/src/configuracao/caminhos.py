@@ -14,6 +14,8 @@ PASTA_SPRITES = PASTA_ASSETS / "imagens" / "movimentação"
 # Quando estes arquivos forem adicionados, as entidades que os usam deixarão
 # automaticamente de exibir suas formas geométricas temporárias.
 IMAGEM_IDENTIDADE_VISUAL = PASTA_TELAS / "identidade_visual.png"
+IMAGEM_TELA_INICIO = PASTA_TELAS / "telainicio.png"
+IMAGEM_BOTAO_JOGAR = PASTA_TELAS / "botaojogar.png"
 IMAGEM_PLATAFORMA = PASTA_TELAS / "plataforma.png"
 IMAGEM_FLOR = PASTA_TELAS / "flor.png"
 FONTE_PRINCIPAL = PASTA_FONTES / "fonte_principal.ttf"

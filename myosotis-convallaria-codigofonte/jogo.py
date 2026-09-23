@@ -15,6 +15,7 @@ from src.configuracao.configuracoes import (
 from src.configuracao.fases import FASES
 from src.controlador_cenas import ControladorCenas
 from src.estado_jogo import EstadoJogo
+from src.cenas.cena_inicial import CenaInicial
 
 
 class Jogo:
@@ -31,8 +32,14 @@ class Jogo:
         self.relogio = pygame.time.Clock()
         self.estado = EstadoJogo()
         self.controlador_cenas = ControladorCenas()
-        self._iniciar_fase(0)
         self.em_execucao = True
+        self.controlador_cenas.trocar_cena(
+            CenaInicial(self.estado, self._iniciar_fase_inicial)
+        )
+
+    def _iniciar_fase_inicial(self) -> None:
+        """Começa a primeira fase depois do clique em JOGAR."""
+        self._iniciar_fase(0)
 
     def _iniciar_fase(self, indice: int) -> None:
         """Cria a fase pedida ou apresenta a conclusão da trajetória."""
