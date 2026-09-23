@@ -42,7 +42,7 @@ pygame.image.load(CAMINHO_IMAGEM + "Andar costas-2.jpeg")
 ]
 
 # VARIÁVEIS DO JOGADOR 
-velocidade = 5
+velocidade = 10
 
 frame_princ = pygame.image.load(CAMINHO_IMAGEM + "Andar frente.jpeg")
 rect_jogador = frame_princ.get_rect()

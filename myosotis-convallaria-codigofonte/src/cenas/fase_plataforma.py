@@ -206,7 +206,9 @@ class FasePlataforma(Fase):
         if caminho is None or not caminho.is_file():
             return
         try:
-            imagem = pygame.image.load(str(caminho))
+            # O cenário cobre a tela; remover o canal alfa evita misturar
+            # milhões de pixels a cada quadro.
+            imagem = pygame.image.load(str(caminho)).convert()
             self._imagem_fundo = pygame.transform.smoothscale(
                 imagem, (LARGURA_TELA, ALTURA_TELA)
             )

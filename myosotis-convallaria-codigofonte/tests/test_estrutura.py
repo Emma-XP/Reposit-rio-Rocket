@@ -229,19 +229,50 @@ class TesteJogadora(unittest.TestCase):
         self.assertGreater(self.jogadora.velocidade_vertical, velocidade_antes)
         self.assertLess(self.jogadora.velocidade_vertical, 0)
 
-    def test_possui_oito_quadros_e_espelhamento_em_cache(self) -> None:
+    def test_carrega_quadros_png_e_espelhamento_em_cache(self) -> None:
         quantidades = {
             estado: len(quadros)
             for estado, quadros in self.jogadora._quadros_direita.items()
         }
         self.assertEqual(
             quantidades,
-            {"parada": 2, "caminhada": 4, "salto": 1, "queda": 1},
+            {
+                "parada": 1,
+                "caminhada": 3,
+                "frente": 2,
+                "costas": 3,
+                "salto": 3,
+                "queda": 2,
+            },
         )
-        self.assertEqual(
-            sum(len(quadros) for quadros in self.jogadora._quadros_esquerda.values()),
-            8,
+        for estado, quadros in self.jogadora._quadros_esquerda.items():
+            for original, espelhado in zip(
+                quadros, self.jogadora._quadros_direita[estado]
+            ):
+                self.assertEqual(original.get_size(), espelhado.get_size())
+                self.assertTrue(original.get_flags() & pygame.SRCALPHA)
+
+    def test_salto_e_queda_mantem_direcao_correta(self) -> None:
+        originais = self.jogadora._carregar_quadros()
+        for estado in ("salto", "queda"):
+            esperado = pygame.image.tobytes(originais[estado][0], "RGBA")
+            esperado_espelhado = pygame.image.tobytes(
+                pygame.transform.flip(originais[estado][0], True, False), "RGBA"
+            )
+            direita = pygame.image.tobytes(
+                self.jogadora._quadros_direita[estado][0], "RGBA"
+            )
+            esquerda = pygame.image.tobytes(
+                self.jogadora._quadros_esquerda[estado][0], "RGBA"
+            )
+            self.assertEqual(direita, esperado)
+            self.assertEqual(esquerda, esperado_espelhado)
+
+        caminhada_original = pygame.image.tobytes(originais["caminhada"][0], "RGBA")
+        caminhada_esquerda = pygame.image.tobytes(
+            self.jogadora._quadros_esquerda["caminhada"][0], "RGBA"
         )
+        self.assertEqual(caminhada_esquerda, caminhada_original)
 
 
 class TesteFasePlataforma(unittest.TestCase):

@@ -2,8 +2,9 @@
 
 ## Descrição
 
-Representa uma superfície sólida e imóvel das fases básicas. Usa um retângulo
-verde enquanto seu sprite não existe.
+Representa uma superfície sólida e imóvel das fases básicas. O sprite da
+plataforma não possui margens transparentes, de modo que a superfície visível
+começa no topo da colisão. Usa um retângulo verde enquanto o sprite não existe.
 
 ## Localização
 

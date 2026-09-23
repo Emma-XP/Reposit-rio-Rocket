@@ -27,12 +27,32 @@ IMAGENS_FUNDO = {
     "vida_adulta": PASTA_TELAS / "fundo_vida_adulta.png",
 }
 
-SPRITES_JOGADORA = { "parada": ( PASTA_SPRITES / "andar_frente" / "Andar frente.jpeg", ),
-"caminhada": ( PASTA_SPRITES / "andar_lados" / "Andar 1.jpeg", PASTA_SPRITES / "andar_lados" / "Andar 2.jpeg", PASTA_SPRITES / "andar_lados" / "Andar 3.jpeg", ),
-"frente": ( PASTA_SPRITES / "andar_frente" / "Andar frente.jpeg", PASTA_SPRITES / "andar_frente" / "Andar frente 2.jpeg", ),
-"costas": ( PASTA_SPRITES / "costas" / "Costas.jpeg", PASTA_SPRITES / "costas" / "Andar costas.jpeg", PASTA_SPRITES / "costas" / "Andar costas-2.jpeg", ),
-"salto": ( PASTA_SPRITES / "pulo" / "Pulo 1.jpeg", PASTA_SPRITES / "pulo" / "Pulo 2.jpeg", PASTA_SPRITES / "pulo" / "Pulo 3.jpeg", ),
-"queda": ( PASTA_SPRITES / "queda" / "Queda 1.jpeg", PASTA_SPRITES / "queda" / "Queda 2.jpeg", ), }
+SPRITES_JOGADORA = {
+    "parada": (PASTA_SPRITES / "andar_frente" / "Andar frente.png",),
+    "caminhada": (
+        PASTA_SPRITES / "andar_lados" / "Andar 1.png",
+        PASTA_SPRITES / "andar_lados" / "Andar 2.png",
+        PASTA_SPRITES / "andar_lados" / "Andar 3.png",
+    ),
+    "frente": (
+        PASTA_SPRITES / "andar_frente" / "Andar frente.png",
+        PASTA_SPRITES / "andar_frente" / "Andar frente 2.png",
+    ),
+    "costas": (
+        PASTA_SPRITES / "costas" / "Costas.png",
+        PASTA_SPRITES / "costas" / "Andar costas.png",
+        PASTA_SPRITES / "costas" / "Andar costas-2.png",
+    ),
+    "salto": (
+        PASTA_SPRITES / "pulo" / "Pulo 1.png",
+        PASTA_SPRITES / "pulo" / "Pulo 2.png",
+        PASTA_SPRITES / "pulo" / "Pulo 3.png",
+    ),
+    "queda": (
+        PASTA_SPRITES / "queda" / "Queda 1.png",
+        PASTA_SPRITES / "queda" / "Queda 2.png",
+    ),
+}
 
 
 def _quadros_jogadora(idade: str) -> dict[str, tuple[Path, ...]]:
@@ -42,13 +62,13 @@ def _quadros_jogadora(idade: str) -> dict[str, tuple[Path, ...]]:
         "parada": tuple(pasta / f"parada_{indice}.png" for indice in range(1, 3)),
         
         "caminhada": tuple(
-            pasta / "andar_lados" / f"Andar{indice}.jpeg" for indice in range(1, 4)
+            pasta / "andar_lados" / f"Andar{indice}.png" for indice in range(1, 4)
         ),
         "salto": tuple(
-                    pasta / "pulo" / f"Pulo{indice}.jpeg" for indice in range(1, 4)
+                    pasta / "pulo" / f"Pulo{indice}.png" for indice in range(1, 4)
         ),
         "queda": tuple(
-                    pasta / "queda" / f"Queda{indice}.jpeg" for indice in range(1, 3)
+                    pasta / "queda" / f"Queda{indice}.png" for indice in range(1, 3)
         )
     }
 

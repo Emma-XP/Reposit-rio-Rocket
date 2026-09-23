@@ -3,7 +3,9 @@
 ## Descrição
 
 Entidade controlável responsável pela física, colisões e seleção visual de
-animação, mantendo uma caixa de colisão estável.
+animação, mantendo uma caixa de colisão estável. Os quadros PNG transparentes
+são ajustados sem deformação ao limite da caixa e desenhados com os pés na
+base da colisão.
 
 ## Localização
 
@@ -33,7 +35,7 @@ animação, mantendo uma caixa de colisão estável.
 
 - Tipo: `str`
 - Valor inicial: informado pela fase.
-- Descrição: seleciona um dos três conjuntos de oito quadros.
+- Descrição: seleciona os caminhos dos quadros de animação da fase.
 
 O pulo possui buffer de 0,12 segundo, tempo coyote de 0,10 segundo e corte de
 altura ao soltar o botão.
@@ -80,5 +82,6 @@ altura ao soltar o botão.
 - Objetivo: desenhar o quadro do estado e direção atuais.
 - Parâmetros: superfície do Pygame.
 - Retorno: nenhum.
-- Efeito no jogo: usa espelhamento em cache sem alterar a física.
-
+- Efeito no jogo: usa espelhamento em cache e alinha o quadro à base da colisão
+  sem alterar a física. Os arquivos de caminhada têm a esquerda como direção
+  original; os de salto e queda têm a direita como direção original.

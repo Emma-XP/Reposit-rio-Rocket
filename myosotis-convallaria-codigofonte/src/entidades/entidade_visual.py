@@ -39,5 +39,7 @@ class EntidadeVisual(Entidade):
         if self.caminho_imagem is None or not self.caminho_imagem.is_file():
             return None
 
-        imagem = pygame.image.load(self.caminho_imagem).convert_alpha()
+        imagem = pygame.image.load(self.caminho_imagem)
+        if pygame.display.get_surface() is not None:
+            imagem = imagem.convert_alpha()
         return pygame.transform.smoothscale(imagem, self.retangulo.size)

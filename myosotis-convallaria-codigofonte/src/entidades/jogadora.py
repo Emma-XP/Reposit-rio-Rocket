@@ -56,13 +56,19 @@ class Jogadora(EntidadeVisual):
         self._indice_quadro = 0
         self._tempo_animacao = 0.0
         
-        self._quadros_esquerda = self._carregar_quadros()
-        self._quadros_direita = {
-            estado: tuple(
-        pygame.transform.flip(quadro, True, False) for quadro in quadros
-        )
-        for estado, quadros in self._quadros_esquerda.items()
-    }
+        quadros_originais = self._carregar_quadros()
+        self._quadros_esquerda = {}
+        self._quadros_direita = {}
+        for estado, quadros in quadros_originais.items():
+            espelhados = tuple(
+                pygame.transform.flip(quadro, True, False) for quadro in quadros
+            )
+            if estado in ("salto", "queda"):
+                self._quadros_esquerda[estado] = espelhados
+                self._quadros_direita[estado] = quadros
+            else:
+                self._quadros_esquerda[estado] = quadros
+                self._quadros_direita[estado] = espelhados
         
 
     def tratar_evento(self, evento: pygame.event.Event) -> None:
@@ -172,7 +178,15 @@ class Jogadora(EntidadeVisual):
         if hasattr(caminho, "is_file") and caminho.is_file():
             try:
                 imagem = pygame.image.load(str(caminho))
-                return pygame.transform.smoothscale(imagem, self.retangulo.size)
+                escala = min(
+                    self.retangulo.width / imagem.get_width(),
+                    self.retangulo.height / imagem.get_height(),
+                )
+                tamanho = (
+                    max(1, round(imagem.get_width() * escala)),
+                    max(1, round(imagem.get_height() * escala)),
+                )
+                return pygame.transform.smoothscale(imagem, tamanho)
             except pygame.error:
                 pass
 
