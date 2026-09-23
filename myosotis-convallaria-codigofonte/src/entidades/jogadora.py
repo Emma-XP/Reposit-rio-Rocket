@@ -55,13 +55,15 @@ class Jogadora(EntidadeVisual):
         self._estado_animacao = "queda"
         self._indice_quadro = 0
         self._tempo_animacao = 0.0
-        self._quadros_direita = self._carregar_quadros()
-        self._quadros_esquerda = {
+        
+        self._quadros_esquerda = self._carregar_quadros()
+        self._quadros_direita = {
             estado: tuple(
-                pygame.transform.flip(quadro, True, False) for quadro in quadros
-            )
-            for estado, quadros in self._quadros_direita.items()
-        }
+        pygame.transform.flip(quadro, True, False) for quadro in quadros
+        )
+        for estado, quadros in self._quadros_esquerda.items()
+    }
+        
 
     def tratar_evento(self, evento: pygame.event.Event) -> None:
         if evento.type not in (pygame.KEYDOWN, pygame.KEYUP):
