@@ -16,7 +16,6 @@ from src.entidades.texto import Texto
 from src.estado_jogo import EstadoJogo
 from src.interface.caixa_dialogo import CaixaDialogo
 
-
 class EstadoFase(Enum):
     """Estados que controlam simulação, narrativa e transição da fase."""
 
