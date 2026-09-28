@@ -10,6 +10,7 @@ PASTA_SONS = PASTA_ASSETS / "sons"
 PASTA_FONTES = PASTA_ASSETS / "fontes"
 PASTA_SPRITES = PASTA_ASSETS / "imagens" / "movimentação"
 PASTA_FLORES = PASTA_ASSETS / "imagens" / "flores"
+
 # Quando estes arquivos forem adicionados, as entidades que os usam deixarão
 # automaticamente de exibir suas formas geométricas temporárias.
 IMAGEM_IDENTIDADE_VISUAL = PASTA_TELAS / "identidade_visual.png"
@@ -23,8 +24,8 @@ FONTE_PRINCIPAL = PASTA_FONTES / "fonte_principal.ttf"
 
 IMAGENS_FUNDO = {
     "infancia": PASTA_TELAS / "Cenario 1.png",
-    "adolescencia": PASTA_TELAS / "fundo_adolescencia.png",
-    "vida_adulta": PASTA_TELAS / "fundo_vida_adulta.png",
+    "adolescencia": PASTA_TELAS / "escola.png",
+    "vida_adulta": PASTA_TELAS / "Cidade.png",
 }
 
 SPRITES_JOGADORA = {

@@ -37,7 +37,7 @@ class DefinicaoFase:
 FASES = (
     DefinicaoFase(
         id="infancia",
-        nome="Infância",
+        nome="",
         idade="infancia",
         spawn_jogadora=(70, 838),
         plataformas=(
@@ -69,7 +69,7 @@ FASES = (
     ),
     DefinicaoFase(
         id="adolescencia",
-        nome="Adolescência",
+        nome="",
         idade="adolescencia",
         spawn_jogadora=(70, 778),
         plataformas=(
@@ -101,7 +101,7 @@ FASES = (
     ),
     DefinicaoFase(
         id="vida_adulta",
-        nome="Vida adulta",
+        nome="",
         idade="vida_adulta",
         spawn_jogadora=(70, 818),
         plataformas=(

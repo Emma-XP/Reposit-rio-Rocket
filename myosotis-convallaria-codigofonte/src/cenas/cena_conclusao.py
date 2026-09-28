@@ -5,7 +5,7 @@ from collections.abc import Callable
 import pygame
 
 from src.cenas.cena import Cena
-from src.configuracao.caminhos import FONTE_PRINCIPAL
+from src.configuracao.caminhos import FONTE_PRINCIPAL, PASTA_TELAS
 from src.configuracao.configuracoes import (
     ALTURA_TELA,
     COR_TEXTO,
@@ -49,6 +49,14 @@ class CenaConclusao(Cena):
             Texto(
                 "Pressione ENTER para jogar novamente",
                 (LARGURA_TELA // 2, ALTURA_TELA // 2 + 40),
+                25,
+                COR_TEXTO_SECUNDARIO,
+                FONTE_PRINCIPAL,
+            )
+        )
+        self.adicionar_entidade(
+            Texto(
+                (LARGURA_TELA // 2, ALTURA_TELA // 2 + 100),
                 25,
                 COR_TEXTO_SECUNDARIO,
                 FONTE_PRINCIPAL,
