@@ -37,7 +37,11 @@ class Cena:
 
     def desenhar(self, superficie: pygame.Surface) -> None:
         """Limpa o fundo e desenha as entidades visíveis."""
-        superficie.fill(self.cor_fundo)
+        if self._imagem_fundo is not None:
+            superficie.blit(self._imagem_fundo, (0, 0))
+        else:
+            superficie.fill(self.cor_fundo)
+
         for entidade in self.entidades:
             if entidade.visivel:
                 entidade.desenhar(superficie)

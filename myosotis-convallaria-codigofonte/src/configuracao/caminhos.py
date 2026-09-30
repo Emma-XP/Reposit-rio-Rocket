@@ -6,6 +6,7 @@ RAIZ_PROJETO = Path(__file__).resolve().parents[2]
 CAMINHO_IMAGEM = RAIZ_PROJETO / "__pyt_pygames__" / "Imagens" / "telas"
 PASTA_ASSETS = RAIZ_PROJETO / "assets"
 PASTA_TELAS = PASTA_ASSETS / "imagens" / "telas" 
+CENA_CONCLUSAO = PASTA_TELAS / "imagens" / "telas" / "finaltela.png"
 PASTA_SONS = PASTA_ASSETS / "sons"
 PASTA_FONTES = PASTA_ASSETS / "fontes"
 PASTA_SPRITES = PASTA_ASSETS / "imagens" / "movimentação"

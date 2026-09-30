@@ -5,7 +5,10 @@ from collections.abc import Callable
 import pygame
 
 from src.cenas.cena import Cena
-from src.configuracao.caminhos import FONTE_PRINCIPAL, PASTA_TELAS
+from src.configuracao.caminhos import (
+    FONTE_PRINCIPAL,
+    CENA_CONCLUSAO,
+)
 from src.configuracao.configuracoes import (
     ALTURA_TELA,
     COR_TEXTO,
@@ -23,10 +26,21 @@ class CenaConclusao(Cena):
         self.ao_reiniciar = ao_reiniciar
         self._preparada = False
         self._reinicio_solicitado = False
+        self._imagem_fundo = None
 
     def entrar(self) -> None:
         if self._preparada:
             return
+
+        # Carrega a imagem de fundo
+        if CENA_CONCLUSAO.is_file():
+            imagem = pygame.image.load(CENA_CONCLUSAO).convert()
+
+            self._imagem_fundo = pygame.transform.smoothscale(
+                imagem,
+                (LARGURA_TELA, ALTURA_TELA),
+            )
+
         self.adicionar_entidade(
             Texto(
                 "Diana seguiu fazendo perguntas, ocupando espaços e reconhecendo o próprio valor.",
@@ -36,6 +50,7 @@ class CenaConclusao(Cena):
                 FONTE_PRINCIPAL,
             )
         )
+
         self.adicionar_entidade(
             Texto(
                 "As pressões não escreveram o fim da história dela.",
@@ -45,6 +60,7 @@ class CenaConclusao(Cena):
                 FONTE_PRINCIPAL,
             )
         )
+
         self.adicionar_entidade(
             Texto(
                 "Pressione ENTER para jogar novamente",
@@ -54,17 +70,22 @@ class CenaConclusao(Cena):
                 FONTE_PRINCIPAL,
             )
         )
-        self.adicionar_entidade(
-            Texto(
-                (LARGURA_TELA // 2, ALTURA_TELA // 2 + 100),
-                25,
-                COR_TEXTO_SECUNDARIO,
-                FONTE_PRINCIPAL,
-            )
-        )
+
         self._preparada = True
 
-    def tratar_evento(self, evento: pygame.event.Event) -> None:
+    def desenhar(self, superficie) -> None:
+        # Desenha a imagem de fundo
+        if self._imagem_fundo is not None:
+            superficie.blit(self._imagem_fundo, (0, 0))
+        else:
+            superficie.fill(self.cor_fundo)
+
+        # Desenha os textos por cima do fundo
+        for entidade in self.entidades:
+            if entidade.visivel:
+                entidade.desenhar(superficie)
+
+    def tratar_evento(self, evento):
         if (
             not self._reinicio_solicitado
             and evento.type == pygame.KEYDOWN
@@ -73,4 +94,5 @@ class CenaConclusao(Cena):
             self._reinicio_solicitado = True
             self.ao_reiniciar()
             return
+
         super().tratar_evento(evento)
