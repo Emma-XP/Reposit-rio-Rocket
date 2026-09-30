@@ -43,9 +43,9 @@ class CenaConclusao(Cena):
 
         self.adicionar_entidade(
             Texto(
-                "Diana seguiu fazendo perguntas, ocupando espaços e reconhecendo o próprio valor.",
+                "O primeiro passo para falar sempre será falar. ",
                 (LARGURA_TELA // 2, ALTURA_TELA // 2 - 70),
-                30,
+                40,
                 COR_TEXTO,
                 FONTE_PRINCIPAL,
             )
@@ -53,22 +53,61 @@ class CenaConclusao(Cena):
 
         self.adicionar_entidade(
             Texto(
-                "As pressões não escreveram o fim da história dela.",
+                "E mesmo após as mais sombrias das noites, o sol continuará nascendo brilhantemente no céu.",
                 (LARGURA_TELA // 2, ALTURA_TELA // 2 - 12),
-                48,
+                40,
                 COR_TEXTO,
                 FONTE_PRINCIPAL,
             )
         )
 
         self.adicionar_entidade(
+    Texto(
+        "As coisas podem parecer pesadas demais agora, e é nesses momentos",
+        (LARGURA_TELA // 2, ALTURA_TELA // 2 + 40),
+        40,
+        COR_TEXTO_SECUNDARIO,
+        FONTE_PRINCIPAL,
+    )
+)
+
+        self.adicionar_entidade(
             Texto(
-                "Pressione ENTER para jogar novamente",
-                (LARGURA_TELA // 2, ALTURA_TELA // 2 + 40),
-                25,
+                "que você precisa se lembrar da efemeridade da vida. Tudo passa,",
+                (LARGURA_TELA // 2, ALTURA_TELA // 2 + 70),
+                40,
                 COR_TEXTO_SECUNDARIO,
                 FONTE_PRINCIPAL,
             )
+        )
+
+        self.adicionar_entidade(
+            Texto(
+                "desde os momentos bons até os ruins. Se algum dia o peso em seus",
+                (LARGURA_TELA // 2, ALTURA_TELA // 2 + 100),
+                40,
+                COR_TEXTO_SECUNDARIO,
+                FONTE_PRINCIPAL,
+            )
+        )
+
+        self.adicionar_entidade(
+            Texto(
+                "ombros voltar, seus músculos já estarão fortalecidos contra aquele obstáculo.",
+                (LARGURA_TELA // 2, ALTURA_TELA // 2 + 130),
+                40,
+                COR_TEXTO_SECUNDARIO,
+                FONTE_PRINCIPAL,
+            )
+)
+        self.adicionar_entidade(
+                    Texto(
+                        "Se lembrar desse fato é chave para sobreviver até a mais terrível das dificuldades..",
+                        (LARGURA_TELA // 2, ALTURA_TELA // 2 + 160),
+                        40,
+                        COR_TEXTO_SECUNDARIO,
+                        FONTE_PRINCIPAL,
+                    )
         )
 
         self._preparada = True
