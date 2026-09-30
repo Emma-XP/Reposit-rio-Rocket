@@ -6,7 +6,10 @@ from enum import Enum, auto
 import pygame
 
 from src.cenas.fase import Fase
-from src.configuracao.caminhos import FONTE_PRINCIPAL
+from src.configuracao.caminhos import (
+    FONTE_PRINCIPAL,
+    IMAGEM_FLOR_LIRIO,
+    IMAGEM_FLOR_MYOSOTIS)
 from src.configuracao.configuracoes import ALTURA_TELA, COR_TEXTO, LARGURA_TELA
 from src.configuracao.fases import DefinicaoFase
 from src.entidades.flor import Flor
@@ -72,6 +75,7 @@ class FasePlataforma(Fase):
             )
         )
         self._recriar_flores()
+
         self._carregar_fundo()
         if self.estado_jogo.abertura_foi_vista(self.definicao.id):
             self.estado_fase = EstadoFase.EXPLORACAO
@@ -165,9 +169,25 @@ class FasePlataforma(Fase):
         self._aplicar_alteracoes_pendentes()
 
     def _recriar_flores(self) -> None:
-        self.flores = [Flor(posicao) for posicao in self.definicao.posicoes_flores]
+        """Cria as flores alternando entre lírio e miosótis."""
+
+        imagens_flores = (
+                IMAGEM_FLOR_LIRIO,
+                IMAGEM_FLOR_MYOSOTIS,
+            )
+
+        self.flores = [
+                Flor(
+                    posicao,
+                    imagens_flores[indice % len(imagens_flores)],
+                )
+                for indice, posicao in enumerate(
+                    self.definicao.posicoes_flores
+                )
+            ]
+
         for flor in self.flores:
-            self.adicionar_entidade(flor)
+                self.adicionar_entidade(flor)
 
     def _abrir_dialogo(self, falas: tuple[str, ...], estado: EstadoFase) -> None:
         if self.caixa_dialogo is not None:

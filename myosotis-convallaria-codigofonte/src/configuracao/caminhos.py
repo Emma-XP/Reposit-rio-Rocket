@@ -18,9 +18,9 @@ IMAGEM_IDENTIDADE_VISUAL = PASTA_TELAS / "identidade_visual.png"
 IMAGEM_TELA_INICIO = PASTA_TELAS / "telainicio.png"
 IMAGEM_BOTAO_JOGAR = PASTA_TELAS / "botaojogar.png"
 IMAGEM_PLATAFORMA = PASTA_TELAS / "plataforma.png"
-IMAGEM_FLOR = PASTA_TELAS / "flor.png"
 IMAGEM_PLATAFORMA = PASTA_ASSETS / "imagens" / "plataformas" / "plataforma.png"
-IMAGEM_FLOR = PASTA_FLORES / "LirioDoVale.png"
+IMAGEM_FLOR_LIRIO = PASTA_FLORES / "LirioDoVale.png"
+IMAGEM_FLOR_MYOSOTIS = PASTA_FLORES / "Myosotis.png"
 FONTE_PRINCIPAL = PASTA_FONTES / "fonte_principal.ttf"
 
 IMAGENS_FUNDO = {
